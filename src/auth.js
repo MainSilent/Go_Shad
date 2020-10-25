@@ -46,7 +46,7 @@ class Auth extends React.Component {
         else {
             if(this.state.code.length === 6) {
                 ipcRenderer.on('signIn:reply', (event, res) => {
-                    if(!res.status === "OK" && !res.status_det === "OK")
+                    if(res.status !== "OK" && res.status_det !== "OK")
                         this.setState({btn: "Error: try again"})
                     else if(res.data.status !== "OK")
                         this.setState({btn: "Invalid: try again"})

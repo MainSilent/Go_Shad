@@ -31,6 +31,7 @@
 
 .msg_card_body {
     overflow-y: auto;
+    direction: rtl;
 }
 
 .card-header {
@@ -119,6 +120,8 @@
 
 .msg_head {
     position: relative;
+    direction: rtl;
+    overflow: hidden;
 }
 
 .contacts-header {
@@ -126,11 +129,12 @@
     overflow: hidden;
 }
 
-.contacts-header p {
+.autoMode p {
     font-family: nazanin;
     font-size: 21px;
     float: right;
-    margin-top: -5px;
+    padding-left: 15px;
+    margin: auto;
 }
 
 .toggle {
@@ -139,6 +143,7 @@
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     transform: translate3d(0, 0, 0);
+    margin-top: 5px;
 }
 
 .toggle:before {
@@ -157,7 +162,7 @@
 .toggle span {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 5px;
     width: 20px;
     height: 20px;
     display: block;
@@ -187,4 +192,173 @@
     .contacts_card {
         margin-bottom: 15px !important;
     }
+}
+
+:root {
+    --size: 100px;
+}
+
+.spinner {
+    --animation-duration: 1500ms;
+    width: var(--size);
+    height: var(--size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 15%;
+    gap: 4px;
+}
+
+.spinner .spinner-item {
+    height: 40%;
+    border-radius: 4px;
+    background-color: var(--clr-spinner);
+    width: calc(var(--size) / 13);
+    animation: spinner5 var(--animation-duration) ease-in-out infinite;
+}
+
+@keyframes spinner5 {
+    25% {
+        transform: scaleY(2);
+    }
+
+    50% {
+        transform: scaleY(1);
+    }
+}
+
+.spinner .spinner-item:nth-child(1) {
+    --clr-spinner: white;
+}
+
+.spinner .spinner-item:nth-child(2) {
+    --clr-spinner: white;
+    animation-delay: calc(var(--animation-duration) / 10);
+}
+
+.spinner .spinner-item:nth-child(3) {
+    --clr-spinner: white;
+    animation-delay: calc(var(--animation-duration) / 10 * 2);
+}
+
+.retry-btn {
+    display: inline-block;
+    padding: 0.3em 1.2em;
+    margin: 0 30px;
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #FFFFFF;
+    background-color: #4eb5f1;
+    text-align: center;
+    transition: all 0.2s;
+    margin-top: 80px;
+    cursor: pointer;
+}
+
+.retry-btn:hover {
+    background-color: #4095c6;
+}
+
+.retry-btn.msg {
+    display: block;
+    padding: 0.3em 1.2em;
+    margin: auto;
+    margin-top: 60px;
+    margin-right: 80px;
+    text-align: center;
+    width: max-content;
+}
+
+@media all and (max-width:30em) {
+    .retry-btn {
+        display: block;
+        margin: 0.2em auto;
+    }
+}
+
+/* Lives Grid */
+
+.lives_grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-gap: 1em;
+    padding: 2em 1em;
+}
+
+.lives_grid figure {
+    margin: 0;
+}
+
+.lives_grid figcaption {
+    margin-top: -10px;
+    font-style: italic;
+    font-size: 1em;
+    color: width;
+    line-height: 1.4;
+}
+
+.lives_grid {
+    grid-auto-flow: initial;
+    grid-template-columns: repeat(auto-fit, minmax(auto, 10em));
+    -webkit-box-pack: center;
+    justify-content: flex-start;
+}
+
+.lives_grid .grid__figure {
+    display: grid;
+    grid-template-rows: 15em 1fr;
+    grid-gap: 1em;
+}
+
+.lives_grid .grid__figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.lives_grid .grid__figure h1 {
+    position: absolute;
+    text-align:center;
+    margin-top: 90px;
+    margin-right: 40px;
+}
+
+.cantplay {
+    filter: grayscale(100%);
+}
+
+.live_detail {
+    position: absolute;
+    width: 158px;
+}
+
+.live_detail p {
+    margin-top: 2px;
+    margin-right: auto;
+    width: min-content;
+    padding: 2px 5px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+
+.live_detail img:nth-child(2) {
+    width: 23px !important;
+    cursor: pointer;
+    margin-top: 162px;
+    margin-left: 131px;
+}
+
+.live_detail img:nth-child(3) {
+    width: 65px !important;
+    margin-top: -260px;
+    margin-left: 47px;
+    cursor: pointer;
 }
