@@ -34,7 +34,7 @@ class ChatsList extends React.Component {
                                 <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" className="rounded-circle user_img"/>
                             </div> */}
                             <div className="user_info">
-                                <span>پخش زنده ها</span>
+                                <span>خانه</span>
                                 <p></p>
                             </div>
                         </div>

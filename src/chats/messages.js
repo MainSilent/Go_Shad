@@ -1,5 +1,5 @@
 import React from 'react';
-import Live from './live'
+import Live from './live';
 
 class ChatsMessages extends React.Component {
     render() {
@@ -17,15 +17,15 @@ class ChatsMessages extends React.Component {
                         {/* <p>1767 Messages</p> */}
                     </div>
                     :
-                    <div className="autoMode">
-                        <input type="checkbox" id="cbx" style={{display: "none"}}/>
-                        <label htmlFor="cbx" className="toggle"><span></span></label>  
-                        <p className="auto-p">شرکت خودکار در پخش زنده ها</p>
+                    <div className="autoMode"> 
+                        <p className="auto-p">یک چت را برای شروع انتخاب کنید</p>
                     </div>
                     }
                 </div>
             </div>
             <div className="msg_card_body">
+                {this.props.index !== "all" &&
+                <>
                 {this.props.loading && 
                 <div className="spinner">
                     <div className="spinner-item"></div>
@@ -33,26 +33,20 @@ class ChatsMessages extends React.Component {
                     <div className="spinner-item"></div>
                 </div>
                 }
-                {this.props.index !== "all" ?
                 <ul className="lives_grid">
                     {this.props.messages.messages &&
-                    Object.keys(this.props.messages.messages).map(index => 
+                    Object.keys(this.props.messages.messages).reverse().map(index => 
                     this.props.messages.messages[index].type === "Live" &&
-                        <Live key={index} message={this.props.messages.messages[index]}/>
+                        <Live key={index} auth={this.props.auth} message={this.props.messages.messages[index]}/>
                     )}
-                    {this.props.messages.old_has_continue &&
-                    <div className="spinner">
-                        <div className="spinner-item"></div>
-                        <div className="spinner-item"></div>
-                        <div className="spinner-item"></div>
-                    </div>
-                    }
                     {this.props.messages === false && 
                         <p className="retry-btn msg" onClick={this.props.retry}>Error: Try again</p> 
                     }
                 </ul>
-                :
-                <h1>All of them!</h1>
+                {this.props.messages.old_has_continue &&
+                    <p className="retry-btn msg" onClick={this.props.retry}>Load again(base on last message)</p> 
+                }
+                </>
                 }
             </div>
         </div>

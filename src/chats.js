@@ -11,10 +11,12 @@ class Chats extends React.Component {
       msgLoading: false,
       index: "all",
       current_chat: {
-        abs_object: {title: "پخش زنده ها"}
+        abs_object: {title: "خانه"}
       },
       chats: [],
-      messages: {}
+      mainChats: {},
+      messages: {},
+      lastMsgid: 0
     }
     this.chChat = this.chChat.bind(this)
     this.getChats = this.getChats.bind(this)
@@ -33,28 +35,32 @@ class Chats extends React.Component {
       ipcRenderer.send('chats', this.props.auth)
   }
   getMessages() {
-    this.setState({msgLoading: true, messages: []})
-    ipcRenderer.on('messages:reply', (event, messages) => {
-      if(!messages) this.setState({messages: false, msgLoading: false})
-      else
-        this.setState({
-          messages: messages,
-          msgLoading: false
-        })
-    })
-    ipcRenderer.send(
-      'messages',
-      this.props.auth,
-      this.state.current_chat.last_message_id,
-      this.state.current_chat.object_guid
-    )
+    if(this.state.messages.old_has_continue) {
+      this.setState({msgLoading: true, messages: []})
+      ipcRenderer.on('messages:reply', (event, messages) => {
+        if(!messages) this.setState({messages: false, msgLoading: false})
+        else {
+          this.setState({
+            messages: messages,
+            lastMsgid: messages.old_max_id,
+            msgLoading: false
+          })
+        }
+      })
+      ipcRenderer.send(
+        'messages',
+        this.props.auth,
+        this.state.lastMsgid,
+        this.state.current_chat.object_guid
+      )
+    }
   }
   chChat(index) {
     index === "all" ?
       this.setState({
         index: "all",
         current_chat: {
-          abs_object: {title: "پخش زنده ها"}
+          abs_object: {title: "خانه"}
         }
       }) :
       this.state.chats[index] !== this.state.current_chat &&
@@ -69,7 +75,8 @@ class Chats extends React.Component {
         if(!chats) this.setState({chats: false})
         else
           this.setState({
-            chats: chats.chats
+            chats: chats.chats,
+            mainChats: chats
           })
       })
       ipcRenderer.send('chats', this.props.auth)
@@ -77,11 +84,13 @@ class Chats extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if(prevState.current_chat.object_guid !== this.state.current_chat.object_guid) {
       this.setState({msgLoading: true, messages: []})
+      
       ipcRenderer.on('messages:reply', (event, messages) => {
         if(!messages) this.setState({messages: false, msgLoading: false})
         else
           this.setState({
             messages: messages,
+            lastMsgid: messages.old_max_id,
             msgLoading: false
           })
       })
@@ -100,8 +109,11 @@ class Chats extends React.Component {
           index={this.state.index}
           loading={this.state.msgLoading}
           chat={this.state.current_chat}
+          chats={this.state.chats}
+          mainchats={this.state.mainChats}
           messages={this.state.messages}
           retry={this.getMessages}
+          auth={this.props.auth}
         />
         <ChatsList 
           chats={this.state.chats}

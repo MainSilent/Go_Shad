@@ -1,0 +1,11 @@
+<video id="video" controls style="width: 100%; height: 100%;">
+    <source type='application/x-mpegURL'/>
+</video>
+
+<script>
+    const video = document.getElementById('video')
+    const querystring = require('querystring');
+    let query = querystring.parse(global.location.search);
+    let url = query['?url']
+    video.src = url
+</script>
