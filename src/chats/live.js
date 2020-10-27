@@ -36,7 +36,7 @@ class Live extends React.Component {
         } else {
             download ? 
             shell.openExternal(this.state.url) :
-            ipcRenderer.send("video", data.play_url);
+            ipcRenderer.send("video", this.state.url);
         }
     }
     render() {

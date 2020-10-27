@@ -9,7 +9,7 @@ class Home extends React.Component {
     super()
     this.state = {
       auth: "",
-      loading: false
+      loading: true
     }
   }
   chAuth(auth) {

@@ -362,10 +362,13 @@
 }
 
 .live_detail img:nth-child(2) {
-    width: 23px !important;
+    width: 30px !important;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
     cursor: pointer;
-    margin-top: 162px;
-    margin-left: 131px;
+    margin-top: 158px;
+    margin-left: 125px;
 }
 
 .live_detail img:nth-child(3) {

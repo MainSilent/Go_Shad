@@ -5,18 +5,20 @@
   "main": "main.js",
   "dependencies": {
     "@supercharge/strings": "^1.15.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.3",
-    "electron": "^10.1.4",
     "electron-localshortcut": "^3.2.1",
     "find-remove": "^2.0.3",
     "jquery": "^3.5.1",
+    "regedit": "^3.0.3"
+  },
+  "devDependencies": {
+    "electron": "^10.1.4",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "react-scripts": "3.4.4",
-    "regedit": "^3.0.3"
+    "react-scripts": "3.4.4"
   },
   "scripts": {
     "start": "react-scripts start",
