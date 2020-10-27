@@ -9,24 +9,29 @@
     "electron-localshortcut": "^3.2.1",
     "find-remove": "^2.0.3",
     "jquery": "^3.5.1",
-    "regedit": "^3.0.3"
+    "regedit": "^3.0.3",
+    "request": "^2.88.2"
   },
   "devDependencies": {
-    "electron": "^10.1.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "cross-env": "^7.0.2",
+    "electron": "^10.1.4",
+    "laravel-mix": "^5.0.7",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-scripts": "3.4.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "react-build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "electron": "electron .",
-    "build": "electron-packager . GoShad --out=build/win --platform=win32 --arch=x64 app-version=1.0 --icon=public/assets/images/icon.png"
+    "build": "electron-packager . GoShad --out=build --platform=win32 --arch=x64 app-version=1.0 --icon=public/assets/images/icon.ico --ignore=^/src"
   },
   "eslintConfig": {
     "extends": "react-app"

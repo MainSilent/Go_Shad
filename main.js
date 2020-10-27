@@ -19,7 +19,7 @@ function createWindow() {
     icon: "./public/assets/images/icon.png"
   })
   win.removeMenu(true)
-  win.loadURL('http://localhost:3000')
+  win.loadFile('public/index.html')
 
   localShortcut.register(win, 'Ctrl+Shift+I', () => {
     win.openDevTools()
@@ -46,9 +46,7 @@ function createWindow() {
 app.whenReady().then(createWindow)
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+  app.quit()
 })
 
 app.on('activate', () => {
