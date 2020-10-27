@@ -1,5 +1,7 @@
 {
   "name": "goshad",
+  "author": "MainSilent",
+  "description": "GoShad for Shad live messages",
   "version": "0.1.0",
   "private": true,
   "main": "main.js",
