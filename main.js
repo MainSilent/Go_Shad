@@ -56,10 +56,10 @@ app.on('activate', () => {
 })
 
 //clean tmp directory and logs
-findRemoveSync('./lib/tmp', {
+findRemoveSync(__dirname+'/lib/tmp', {
   dir: "*",
   files: "*.*"
 })
-findRemoveSync('./lib/Crypto', {
+findRemoveSync(__dirname+'/lib/Crypto', {
   extensions: ['.log']
 })
